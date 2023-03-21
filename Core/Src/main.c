@@ -136,6 +136,16 @@ int main(void)
 			 averageRisingedgePeriod = IC_Calc_Period();
 			 __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, MotorSetDuty*10);
 
+			 if (MotorSetDuty <= 0)
+			 {
+				 MotorSetDuty = 2;
+			 }
+			 else if (MotorSetDuty >= 100)
+			 {
+				 MotorSetDuty = 98;
+			 }
+
+			 //motor
 			 if (MotorReadRPM > MotorSetRPM)
 			 {
 				 MotorSetDuty = MotorSetDuty - 2;
